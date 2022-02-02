@@ -9,11 +9,12 @@ function [] = DrawPlot(mu, var, x_train, y_train, x_test, y_test)
     lower(x_test) = lowerBoundTest;
     lower(x_train) = y_train;
 
-    plot(x_train, y_train, 'r');
+    plot(x_train, y_train, 'k','DisplayName','训练集');
     hold on;
-    plot(x_test, (upperBoundTest + lowerBoundTest) / 2, 'b');
-    plot(x_test, y_test, 'r');
+    plot(x_test, (upperBoundTest + lowerBoundTest) / 2, 'b','DisplayName','测试集预测值');
+    plot(x_test, y_test, 'r','DisplayName','测试集真实值');
     %对置信度区间染色
-    fill([x_test, x_test(end:-1:1)], [upperBoundTest, lowerBoundTest(end:-1:1)], 'b', 'facealpha', 0.3);
+    fill([x_test, x_test(end:-1:1)], [upperBoundTest, lowerBoundTest(end:-1:1)], 'b', 'facealpha', 0.3,'DisplayName','置信度区间');
+    legend;
     hold off;
 end
